@@ -6,6 +6,8 @@ import { TestimonialSlider } from "@/components/testimonial-slider"
 import type { Testimonial } from "@/types/index"
 import "../app/globals.css"
 
+import Image from "next/image"
+
 interface SidebarProps {
   testimonials: Testimonial[]
   currentTestimonialIndex: number
@@ -26,7 +28,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
       {/* Money Back Guarantee */}
       <div className="flex items-center gap-2 mb-8 font-bold">
-        <Shield className="w-5 h-5 text-blue-600" />
+        <Image className="w-5 h-5" src="/approved.png" alt="Money Back Guarantee" width={20} height={20} />
         <span className="text-blue-600 font-bold text-[14px]">Money Back Guarantee</span>
       </div>
 
