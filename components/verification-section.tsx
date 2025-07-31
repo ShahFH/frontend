@@ -45,7 +45,7 @@ export const VerificationSection: React.FC<VerificationSectionProps> = ({
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.3, delay: 0.7 }} // Adjusted delay
-            className="text-blue-600 font-medium"
+            className="text-[#2563EB] text-[16px] font-medium"
           >
             Email
           </motion.span>

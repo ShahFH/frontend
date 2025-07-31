@@ -36,7 +36,7 @@ export const NavigationButtons: React.FC<NavigationButtonsProps> = ({
 
       <Button
         onClick={formState === "email" ? handleNext : undefined}
-        className="bg-gray-400 hover:bg-gray-500 text-white px-8 py-2 rounded-lg font-medium disabled:opacity-50"
+        className="bg-[#4B556399] hover:bg-[#2f363e99] text-white px-8 py-2 rounded-lg font-medium disabled:opacity-50"
         disabled={formState === "email" ? !email.trim() || isLoading : verificationCode.some((digit) => !digit)}
       >
         {isLoading ? "Sending..." : "Next"}

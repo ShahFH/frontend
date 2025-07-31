@@ -128,7 +128,7 @@ const Page: React.FC = () => {
         <div className="w-full max-w-[660px]">
           {/* Step Indicator */}
           <motion.div
-            className="mb-8 text-left"
+            className=" text-left"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
