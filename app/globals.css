@@ -88,3 +88,12 @@
     @apply bg-background text-foreground;
   }
 }
+
+
+@font-face {
+  font-family: 'Satoshi';
+  src: url('/f') format('woff2'),
+       url('/fonts/MyFont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
