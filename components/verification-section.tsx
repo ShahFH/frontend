@@ -74,7 +74,7 @@ export const VerificationSection: React.FC<VerificationSectionProps> = ({
           <Button
             variant="ghost"
             onClick={handleChangeEmail}
-            className="bg-[#4B556399] hover:bg-[#2f363e99] hover:bg-gray-100 px-3 py-1 h-auto text-[14px] underline"
+            className=" text-[#4B5563] hover:bg-gray-100 px-3 py-1 h-auto text-[14px] underline"
           >
             Change
           </Button>
