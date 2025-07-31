@@ -2,14 +2,13 @@
 
 import type React from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { useState, useRef, useEffect } from "react"
+import { useState, useRef, useEffect, useCallback } from "react" // Added useCallback
 import { Sidebar } from "@/components/sidebar"
 import { EmailInputSection } from "@/components/email-input-section"
 import { VerificationSection } from "@/components/verification-section"
 import { NavigationButtons } from "@/components/navigation-buttons"
 import type { FormState, Testimonial } from "@/types/index"
 import "./globals.css"
-
 
 const testimonials: Testimonial[] = [
   {
@@ -55,9 +54,10 @@ const Page: React.FC = () => {
   const [showEmailShimmer, setShowEmailShimmer] = useState(false)
   const inputRefs = useRef<(HTMLInputElement | null)[]>([])
   const [currentTestimonialIndex, setCurrentTestimonialIndex] = useState(0)
+  const [isEmailInputValid, setIsEmailInputValid] = useState(false) // Re-added state for email input validity
 
   const handleNext = async () => {
-    if (!email.trim()) return
+    if (!email.trim() || !isEmailInputValid) return // Check validity before proceeding
 
     setIsLoading(true)
 
@@ -88,11 +88,9 @@ const Page: React.FC = () => {
 
   const handleVerificationInput = (index: number, value: string) => {
     if (value.length > 1) return
-
     const newCode = [...verificationCode]
     newCode[index] = value
     setVerificationCode(newCode)
-
     // Auto-focus next input
     if (value && index < 3) {
       inputRefs.current[index + 1]?.focus()
@@ -115,6 +113,11 @@ const Page: React.FC = () => {
     }
   }, [showEmailShimmer])
 
+  // Callback to receive email validity from EmailInputSection
+  const handleEmailValidityChange = useCallback((isValid: boolean) => {
+    setIsEmailInputValid(isValid)
+  }, [])
+
   return (
     <div className="min-h-screen flex">
       <Sidebar
@@ -122,7 +125,6 @@ const Page: React.FC = () => {
         currentTestimonialIndex={currentTestimonialIndex}
         setCurrentTestimonialIndex={setCurrentTestimonialIndex}
       />
-
       {/* Main Content */}
       <div className="flex-1 flex items-center px-6 md:px-6 lg:px-6 bg-white justify-center m-[10px] rounded-[24px]">
         <div className="w-full max-w-[660px]">
@@ -133,9 +135,10 @@ const Page: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <span className="text-blue-600 font-bold text-[20px]">Step 3/<span className=" text-[#4B556399] opacity-60">9</span></span>
+            <span className="text-blue-600 font-bold text-[20px]">
+              Step 3/<span className=" text-[#4B556399] opacity-60">9</span>
+            </span>
           </motion.div>
-
           {/* Question */}
           <motion.div
             className="text-left mb-2"
@@ -145,7 +148,6 @@ const Page: React.FC = () => {
           >
             <h3 className="text-[32px] H1 text-gray-900">What is your email?</h3>
           </motion.div>
-
           {/* Subtitle */}
           <motion.div
             className="text-left mb-8"
@@ -155,7 +157,6 @@ const Page: React.FC = () => {
           >
             <p className="text-gray-600 text-[16px]">This is where we send the note</p>
           </motion.div>
-
           {/* Email Input / Display & Verification Section */}
           <AnimatePresence mode="wait">
             {formState === "email" ? (
@@ -164,6 +165,7 @@ const Page: React.FC = () => {
                 setEmail={setEmail}
                 isLoading={isLoading}
                 showEmailShimmer={showEmailShimmer}
+                onValidityChange={handleEmailValidityChange} // Pass the callback
               />
             ) : (
               <VerificationSection
@@ -177,7 +179,6 @@ const Page: React.FC = () => {
               />
             )}
           </AnimatePresence>
-
           <NavigationButtons
             formState={formState}
             email={email}
@@ -185,6 +186,7 @@ const Page: React.FC = () => {
             verificationCode={verificationCode}
             handleBack={handleBack}
             handleNext={handleNext}
+            isEmailInputValid={isEmailInputValid} // Pass validity to NavigationButtons
           />
         </div>
       </div>

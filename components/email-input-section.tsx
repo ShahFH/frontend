@@ -4,12 +4,14 @@ import type React from "react"
 import { Input } from "@/components/ui/input"
 import { motion, AnimatePresence } from "framer-motion"
 import { Loader2 } from "@/components/icons"
+import { useState, useEffect } from "react"
 
 interface EmailInputSectionProps {
   email: string
   setEmail: (email: string) => void
   isLoading: boolean
   showEmailShimmer: boolean
+  onValidityChange: (isValid: boolean) => void // Re-added prop to communicate validity
 }
 
 export const EmailInputSection: React.FC<EmailInputSectionProps> = ({
@@ -17,7 +19,32 @@ export const EmailInputSection: React.FC<EmailInputSectionProps> = ({
   setEmail,
   isLoading,
   showEmailShimmer,
+  onValidityChange,
 }) => {
+  const [isValidEmail, setIsValidEmail] = useState(true) // Re-added state for email validity
+
+  // Basic email validation regex
+  const validateEmailFormat = (email: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    return emailRegex.test(email)
+  }
+
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newEmail = e.target.value
+    setEmail(newEmail)
+    // Consider empty string valid for initial state, but require format for actual input
+    const isValid = validateEmailFormat(newEmail) || newEmail === ""
+    setIsValidEmail(isValid)
+    onValidityChange(isValid) // Communicate validity to parent
+  }
+
+  // Initial validation when component mounts or email prop changes
+  useEffect(() => {
+    const isValid = validateEmailFormat(email) || email === ""
+    setIsValidEmail(isValid)
+    onValidityChange(isValid)
+  }, [email, onValidityChange])
+
   return (
     <motion.div
       key="email-input-field-wrapper"
@@ -29,10 +56,10 @@ export const EmailInputSection: React.FC<EmailInputSectionProps> = ({
     >
       <motion.div
         layoutId="email-form-container"
-        className="relative flex items-center h-12 rounded-lg border-2"
+        className="relative flex items-center h-12 rounded-lg border-2" // Removed conditional border-red-500
         animate={{
-          backgroundColor: isLoading ? "#FFFFFF" : "#FFFFFF", // blue-100
-          borderColor: isLoading ? "#3B82F6" : "#BFDBFE", // blue-600 : blue-200
+          backgroundColor: isLoading ? "#FFFFFF" : "#FFFFFF",
+          borderColor: isLoading ? "#3B82F6" : "#BFDBFE", // Removed invalid email border color
         }}
         transition={{ duration: 0.3 }}
       >
@@ -40,7 +67,8 @@ export const EmailInputSection: React.FC<EmailInputSectionProps> = ({
           type="email"
           placeholder="Enter your email"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          required
+          onChange={handleEmailChange} // Use the new handler
           className="w-full h-full px-4 pr-12 text-[16px] text-[#353849] bg-transparent focus:border-[#2563EB] focus:ring-0 focus:outline focus:outline-blue-600 py-0 leading-[3rem]"
           disabled={isLoading}
         />
@@ -63,6 +91,7 @@ export const EmailInputSection: React.FC<EmailInputSectionProps> = ({
           )}
         </AnimatePresence>
       </motion.div>
+      {/* Removed AnimatePresence and motion.p for error message */}
     </motion.div>
   )
 }

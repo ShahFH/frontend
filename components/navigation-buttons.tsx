@@ -13,6 +13,7 @@ interface NavigationButtonsProps {
   verificationCode: string[]
   handleBack: () => void
   handleNext: () => Promise<void>
+  isEmailInputValid: boolean // Re-added prop for email input validity
 }
 
 export const NavigationButtons: React.FC<NavigationButtonsProps> = ({
@@ -22,6 +23,7 @@ export const NavigationButtons: React.FC<NavigationButtonsProps> = ({
   verificationCode,
   handleBack,
   handleNext,
+  isEmailInputValid, // Destructure new prop
 }) => {
   return (
     <motion.div layout className="flex justify-between items-center" transition={{ duration: 0.6, ease: "easeInOut" }}>
@@ -36,8 +38,12 @@ export const NavigationButtons: React.FC<NavigationButtonsProps> = ({
 
       <Button
         onClick={formState === "email" ? handleNext : undefined}
-        className="bg-[#4B556399] hover:bg-[#2f363e99] text-white px-8 py-2 rounded-lg font-medium disabled:opacity-50"
-        disabled={formState === "email" ? !email.trim() || isLoading : verificationCode.some((digit) => !digit)}
+        className="bg-gray-400 hover:bg-gray-500 text-white px-8 py-2 rounded-lg font-medium disabled:opacity-50"
+        disabled={
+          formState === "email"
+            ? !email.trim() || isLoading || !isEmailInputValid // Disable if email is invalid
+            : verificationCode.some((digit) => !digit)
+        }
       >
         {isLoading ? "Sending..." : "Next"}
       </Button>
