@@ -41,7 +41,7 @@ export const EmailInputSection: React.FC<EmailInputSectionProps> = ({
           placeholder="Enter your email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="w-full h-full px-4 pr-12 text-base bg-transparent focus:border-[#2563EB] focus:ring-0 focus:outline focus:outline-blue-600 py-0 leading-[3rem]"
+          className="w-full h-full px-4 pr-12 text-[16px] text-[#353849] bg-transparent focus:border-[#2563EB] focus:ring-0 focus:outline focus:outline-blue-600 py-0 leading-[3rem]"
           disabled={isLoading}
         />
         <AnimatePresence>
