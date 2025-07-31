@@ -92,8 +92,64 @@
 
 @font-face {
   font-family: 'Satoshi';
-  src: url('/f') format('woff2'),
-       url('/fonts/MyFont.woff') format('woff');
-  font-weight: normal;
+  src: url('/fonts/Satoshi-Regular.woff') format('woff');
+  font-weight: 400;
   font-style: normal;
+}
+
+@font-face {
+  font-family: 'Satoshi';
+  src: url('/fonts/Satoshi-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Satoshi-bold';
+  src: url('/fonts/Satoshi-Bold.otf') format('woff');
+  font-weight: 700;
+}
+
+body {
+  font-family: 'Satoshi', sans-serif;
+  font-weight: 400;
+}
+
+.H1 {
+  font-family: 'Satoshi-bold', sans-serif;
+  font-weight: 700;
+}
+
+input {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 16px;
+}
+
+
+
+.shiny-text {
+  font-size: 16px;
+  font-weight: bold;
+  color: transparent;
+  background: linear-gradient(
+    120deg,
+    #2563EB 35%,      /* Dark blue base */
+    #C2D5FF 50%, /* Light blue shimmer */
+    #153885 65%       /* Back to base */
+  );
+  background-size: 200% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  display: inline-block;
+  animation: shine 3s linear infinite;
+}
+
+@keyframes shine {
+  0% {
+    background-position: 100%;
+  }
+  100% {
+    background-position: -100%;
+  }
 }

@@ -4,6 +4,7 @@ import type React from "react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
+import "../app/globals.css"
 
 interface VerificationSectionProps {
   email: string
@@ -36,7 +37,7 @@ export const VerificationSection: React.FC<VerificationSectionProps> = ({
     >
       <motion.div
         layoutId="email-form-container"
-        className="bg-blue-50 px-4 py-3 flex items-center justify-between border-b border-gray-200"
+        className="bg-blue-50 px-[24px] py-3 flex items-center justify-between border-b border-gray-200"
         transition={{ duration: 0.5, ease: "easeInOut" }} // Explicit transition for layoutId element
       >
         <div className="flex items-center gap-3">
@@ -49,14 +50,12 @@ export const VerificationSection: React.FC<VerificationSectionProps> = ({
             Email
           </motion.span>
           <span className="relative overflow-hidden">
-            <motion.span
-              initial={{ x: -30, opacity: 0 }}
-              animate={{ x: [0, 5, 0], opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.8, ease: "easeOut" }} // Adjusted delay
-              className="relative z-10 text-gray-900"
+            <span
+              
+              className="relative z-10 text-[#2563EB] shiny-text"
             >
               {email}
-            </motion.span>
+            </span>
             {showEmailShimmer && (
               <motion.div
                 initial={{ x: "-100%" }}
@@ -75,7 +74,7 @@ export const VerificationSection: React.FC<VerificationSectionProps> = ({
           <Button
             variant="ghost"
             onClick={handleChangeEmail}
-            className="text-gray-600 hover:text-gray-800 hover:bg-gray-100 px-3 py-1 h-auto text-sm"
+            className="text-gray-600 hover:text-gray-800 hover:bg-gray-100 px-3 py-1 h-auto text-[14px] underline"
           >
             Change
           </Button>
@@ -86,40 +85,35 @@ export const VerificationSection: React.FC<VerificationSectionProps> = ({
       <motion.div
         initial={{ opacity: 0, height: 0 }}
         animate={{ opacity: 1, height: "auto" }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-        className="p-4"
+        transition={{ duration: 0.3, delay: 0.1,  ease: "easeOut" }}
+        className="p-[24px]"
       >
-        <h4 className="text-lg font-bold text-gray-900 mb-2">Enter verification code</h4>
-        <p className="text-sm text-gray-600 mb-6">
+        <h4 className="text-[16px] H1 text-gray-900 mb-2">Enter verification code</h4>
+        <p className="text-[16px] text-[#353849] mb-6">
           Enter the code sent to <span className="font-medium">{email}</span> to use your saved information.
         </p>
 
         {/* Verification Code Inputs */}
         <div className="flex gap-3 mb-4">
           {verificationCode.map((digit, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.3, delay: 0.6 + index * 0.1 }}
+            <div
             >
               <Input
-                ref={(el) => (inputRefs.current[index] = el)}
                 type="text"
                 maxLength={1}
                 value={digit}
                 onChange={(e) => handleVerificationInput(index, e.target.value)}
                 onKeyDown={(e) => handleKeyDown(index, e)}
-                className="w-12 h-12 text-center text-lg font-semibold border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:ring-0"
+                className="w-12 h-12 text-center text-lg font-semibold border-2 border-gray-200 rounded-[8px] focus:border-blue-500 focus:ring-0"
               />
-            </motion.div>
+            </div>
           ))}
         </div>
 
         {/* Send Again Link */}
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4, delay: 1.0 }}>
-          <p className="text-sm text-gray-500">
-            Didn't receive a code? <button className="text-blue-600 hover:text-blue-700 font-medium">Send again</button>
+          <p className="text-sm text-[#4B5563] opacity-60">
+            Didn't receive a code? <button className="text-[#3971ED] hover:text-blue-700 font-medium">Send again</button>
           </p>
         </motion.div>
       </motion.div>

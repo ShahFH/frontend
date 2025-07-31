@@ -4,6 +4,7 @@ import type React from "react"
 import { Shield } from "@/components/icons"
 import { TestimonialSlider } from "@/components/testimonial-slider"
 import type { Testimonial } from "@/types/index"
+import "../app/globals.css"
 
 interface SidebarProps {
   testimonials: Testimonial[]
@@ -17,21 +18,21 @@ export const Sidebar: React.FC<SidebarProps> = ({
   setCurrentTestimonialIndex,
 }) => {
   return (
-    <div className="w-80 bg-blue-50 p-6 flex flex-col">
+    <div className="w-80 p-6 flex flex-col">
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-xl font-semibold text-gray-900">OnlineMed</h1>
+        <h1 className="text-[20px] H1 text-[#111827]">OnlineMed</h1>
       </div>
 
       {/* Money Back Guarantee */}
       <div className="flex items-center gap-2 mb-8 font-bold">
         <Shield className="w-5 h-5 text-blue-600" />
-        <span className="text-blue-600 font-bold">Money Back Guarantee</span>
+        <span className="text-blue-600 font-bold text-[14px]">Money Back Guarantee</span>
       </div>
 
       {/* Main Heading */}
       <div className="mb-8">
-        <h2 className="text-2xl font-bold text-gray-900 leading-tight">
+        <h2 className="text-[32px] H1 font-bold text-gray-900 leading-tight">
           Your <span className="text-blue-600">Work</span> Note
           <br />
           is Minutes Away
@@ -40,7 +41,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
       {/* Note Text */}
       <div className="mb-auto">
-        <p className="text-sm text-gray-600 leading-relaxed">
+        <p className="text-[16] text-[#111827] leading-relaxed">
           Note: Due to capacity we are currently only able to provide a limited number of notes per day. To see if you
           qualify please fill out the following short survey!
         </p>

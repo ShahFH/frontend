@@ -4,7 +4,7 @@ import { GeistMono } from 'geist/font/mono'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'text',
+  title: 'test',
   description: 'test',
 }
 
@@ -17,7 +17,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
       </head>
-      <body>{children}</body>
+      <body className=' bg-[#E8F0FD]'>{children}</body>
     </html>
   )
 }

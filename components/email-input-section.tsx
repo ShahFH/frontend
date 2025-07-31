@@ -41,7 +41,7 @@ export const EmailInputSection: React.FC<EmailInputSectionProps> = ({
           placeholder="Enter your email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="w-full h-full px-4 pr-12 text-base bg-transparent focus:ring-0 border-none py-0 leading-[3rem]"
+          className="w-full h-full px-4 pr-12 text-base bg-transparent focus:border-[#2563EB] focus:ring-0 focus:outline focus:outline-blue-600 py-0 leading-[3rem]"
           disabled={isLoading}
         />
         <AnimatePresence>
@@ -51,13 +51,13 @@ export const EmailInputSection: React.FC<EmailInputSectionProps> = ({
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.8 }}
               transition={{ duration: 0.2 }}
-              className="absolute right-3 top-[calc(50%-2px)] transform -translate-y-1/2"
+              className="absolute right-3 bottom-3 transform -translate-y-1/2"
             >
               <motion.div
                 animate={{ rotate: 360 }}
                 transition={{ duration: 1, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
               >
-                <Loader2 className="w-5 h-5 text-blue-600" />
+                <Loader2 className="w-5 h-5 text-[#2563EB]" />
               </motion.div>
             </motion.div>
           )}

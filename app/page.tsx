@@ -8,6 +8,8 @@ import { EmailInputSection } from "@/components/email-input-section"
 import { VerificationSection } from "@/components/verification-section"
 import { NavigationButtons } from "@/components/navigation-buttons"
 import type { FormState, Testimonial } from "@/types/index"
+import "./globals.css"
+
 
 const testimonials: Testimonial[] = [
   {
@@ -114,7 +116,7 @@ const Page: React.FC = () => {
   }, [showEmailShimmer])
 
   return (
-    <div className="min-h-screen bg-gray-50 flex">
+    <div className="min-h-screen flex">
       <Sidebar
         testimonials={testimonials}
         currentTestimonialIndex={currentTestimonialIndex}
@@ -122,8 +124,8 @@ const Page: React.FC = () => {
       />
 
       {/* Main Content */}
-      <div className="flex-1 flex items-center justify-center p-8">
-        <div className="w-full max-w-md">
+      <div className="flex-1 flex items-center bg-white justify-center m-[10px] rounded-[24px]">
+        <div className="w-full max-w-[660px]">
           {/* Step Indicator */}
           <motion.div
             className="mb-8 text-left"
@@ -131,7 +133,7 @@ const Page: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <span className="text-blue-600 font-medium">Step 3/9</span>
+            <span className="text-blue-600 font-bold text-[20px]">Step 3/<span className=" text-[#4B556399] opacity-60">9</span></span>
           </motion.div>
 
           {/* Question */}
@@ -141,7 +143,7 @@ const Page: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <h3 className="text-3xl font-bold text-gray-900">What is your email?</h3>
+            <h3 className="text-[32px] H1 text-gray-900">What is your email?</h3>
           </motion.div>
 
           {/* Subtitle */}
@@ -151,7 +153,7 @@ const Page: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <p className="text-gray-600">This is where we send the note</p>
+            <p className="text-gray-600 text-[16px]">This is where we send the note</p>
           </motion.div>
 
           {/* Email Input / Display & Verification Section */}
