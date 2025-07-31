@@ -31,7 +31,7 @@ export const EmailInputSection: React.FC<EmailInputSectionProps> = ({
         layoutId="email-form-container"
         className="relative flex items-center h-12 rounded-lg border-2"
         animate={{
-          backgroundColor: isLoading ? "#DBEAFE" : "#FFFFFF", // blue-100
+          backgroundColor: isLoading ? "#FFFFFF" : "#FFFFFF", // blue-100
           borderColor: isLoading ? "#3B82F6" : "#BFDBFE", // blue-600 : blue-200
         }}
         transition={{ duration: 0.3 }}
