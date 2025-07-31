@@ -124,7 +124,7 @@ const Page: React.FC = () => {
       />
 
       {/* Main Content */}
-      <div className="flex-1 flex items-center bg-white justify-center m-[10px] rounded-[24px]">
+      <div className="flex-1 flex items-center px-6 md:px-6 lg:px-6 bg-white justify-center m-[10px] rounded-[24px]">
         <div className="w-full max-w-[660px]">
           {/* Step Indicator */}
           <motion.div
