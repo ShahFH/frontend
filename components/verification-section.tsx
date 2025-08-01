@@ -40,28 +40,28 @@ export const VerificationSection: React.FC<VerificationSectionProps> = ({
         className="bg-blue-50 px-[24px] py-3 flex items-center justify-between border-b border-gray-200"
         transition={{ duration: 0.5, ease: "easeInOut" }} // Explicit transition for layoutId element
       >
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 transition-all">
           <motion.span
-            initial={{ opacity: 0, x: -10 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.3, delay: 0.7 }} // Adjusted delay
-            className="text-[#2563EB] text-[16px] font-medium"
+            initial={{ opacity: 0, width: 0 }}
+            animate={{ opacity: 1, width: "auto" }}
+            transition={{ duration: 0.3, delay: 0.7, ease: "easeOut" }}
+            className="text-[#2563EB] text-[16px] font-medium overflow-hidden whitespace-nowrap"
           >
             Email
           </motion.span>
           <span className="relative overflow-hidden">
-            <span
-              
-              className="relative z-10 text-[#2563EB] shiny-text"
+            <motion.span
+
+              className="relative z-10 text-[#2563EB] shiny-text transition-all duration-500"
             >
               {email}
-            </span>
+            </motion.span>
             {showEmailShimmer && (
               <motion.div
                 initial={{ x: "-100%" }}
                 animate={{ x: "100%" }}
                 transition={{ duration: 1.5, ease: "linear", repeat: Number.POSITIVE_INFINITY }}
-                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent z-0"
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent z-0 transition-all"
               />
             )}
           </span>
@@ -85,7 +85,7 @@ export const VerificationSection: React.FC<VerificationSectionProps> = ({
       <motion.div
         initial={{ opacity: 0, height: 0 }}
         animate={{ opacity: 1, height: "auto" }}
-        transition={{ duration: 0.3, delay: 0.1,  ease: "easeOut" }}
+        transition={{ duration: 0.3, delay: 0.1, ease: "easeOut" }}
         className="p-[24px]"
       >
         <h4 className="text-[16px] H1 text-gray-900 mb-2">Enter verification code</h4>
@@ -96,10 +96,10 @@ export const VerificationSection: React.FC<VerificationSectionProps> = ({
         {/* Verification Code Inputs */}
         <div className="flex gap-3 mb-4">
           {verificationCode.map((digit, index) => (
-            <div
-            >
+            <div key={index}>
               <Input
-                type="text"
+                ref={(el) => (inputRefs.current[index] = el)}
+                type="number"
                 maxLength={1}
                 value={digit}
                 onChange={(e) => handleVerificationInput(index, e.target.value)}
@@ -113,7 +113,8 @@ export const VerificationSection: React.FC<VerificationSectionProps> = ({
         {/* Send Again Link */}
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4, delay: 1.0 }}>
           <p className="text-sm text-[#4B5563] opacity-60">
-            Didn't receive a code? <button className="text-[#3971ED] hover:text-blue-700 font-medium">Send again</button>
+            Didn't receive a code?{" "}
+            <button className="text-[#3971ED] hover:text-blue-700 font-medium">Send again</button>
           </p>
         </motion.div>
       </motion.div>
