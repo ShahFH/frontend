@@ -20,7 +20,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   setCurrentTestimonialIndex,
 }) => {
   return (
-    <div className="w-80 p-6 hidden sm:flex flex-col">
+    <div className="w-[354px] p-6 hidden sm:flex flex-col">
       {/* Header */}
       <div className="mb-8">
         <h1 className="text-[20px] H1 text-[#111827]">OnlineMed</h1>

@@ -125,7 +125,10 @@ input {
   font-size: 16px;
 }
 
-
+.focus\: outline-none:focus {
+        --tw-outline-style:none;
+        outline-style: none;
+    }
 
 .shiny-text {
   font-size: 16px;

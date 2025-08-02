@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input"
 import { motion, AnimatePresence } from "framer-motion"
 import { Loader2 } from "@/components/icons"
 import { useState, useEffect } from "react"
+import "../app/globals.css" // Ensure global styles are applied
 
 interface EmailInputSectionProps {
   email: string
@@ -69,7 +70,7 @@ export const EmailInputSection: React.FC<EmailInputSectionProps> = ({
           value={email}
           required
           onChange={handleEmailChange} // Use the new handler
-          className="w-full h-full px-4 pr-12 text-[16px] text-[#353849] bg-transparent focus:border-[#2563EB] focus:ring-0 focus:outline focus:outline-blue-600 py-0 leading-[3rem]"
+          className="w-full h-full px-4 pr-12 text-[16px] text-[#353849] bg-transparent focus:outline-none focus:ring-2 focus:ring-[#2563EB40] border border-[#4B556326]  py-0 leading-[3rem]"
           disabled={isLoading}
         />
         <AnimatePresence>

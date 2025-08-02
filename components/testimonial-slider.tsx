@@ -30,7 +30,7 @@ export const TestimonialSlider: React.FC<TestimonialSliderProps> = ({
 
   return (
     <>
-      <div className="relative h-[200px] overflow-hidden">
+      <div className="relative h-[202px] w-[320px] overflow-hidden">
         <AnimatePresence initial={false} mode="wait">
           <motion.div
             key={currentTestimonial.id}
@@ -38,7 +38,7 @@ export const TestimonialSlider: React.FC<TestimonialSliderProps> = ({
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -100 }}
             transition={{ duration: 0.5, ease: "easeInOut" }}
-            className="absolute inset-0 bg-white rounded-lg p-4 shadow-sm"
+            className="absolute inset-0 bg-[#f5f9ff] opacity-60 rounded-[12px] p-4 shadow-sm"
           >
             {/* User Info */}
             <div className="flex items-center gap-3 mb-3">
