@@ -56,23 +56,37 @@ export const EmailInputSection: React.FC<EmailInputSectionProps> = ({
       className="mb-12"
     >
       <motion.div
-        layoutId="email-form-container"
-        className="relative flex items-center h-12 rounded-lg border-2" // Removed conditional border-red-500
-        animate={{
-          backgroundColor: isLoading ? "#FFFFFF" : "#FFFFFF",
-          borderColor: isLoading ? "#3B82F6" : "#BFDBFE", // Removed invalid email border color
-        }}
-        transition={{ duration: 0.3 }}
-      >
-        <Input
-          type="email"
-          placeholder="Enter your email"
-          value={email}
-          required
-          onChange={handleEmailChange} // Use the new handler
-          className="w-full h-full px-4 pr-12 text-[16px] text-[#353849] bg-transparent focus:outline-none focus:ring-2 focus:ring-[#2563EB40] border border-[#4B556326]  py-0 leading-[3rem]"
-          disabled={isLoading}
-        />
+  layoutId="email-form-container"
+  className="relative flex items-center h-12 rounded-lg border-[1px]"
+  animate={{
+    backgroundColor: isLoading ? "#FFFFFF" : "#FFFFFF",
+    borderColor: isLoading ? "#3B82F6" : "#4B556326",
+  }}
+  transition={{ duration: 0.3 }}
+>
+  <Input
+    type="email"
+    placeholder="Enter your email"
+    value={email}
+    required
+    onChange={handleEmailChange}
+    className="w-full h-full px-4 pr-12 text-[16px] text-[#353849] bg-transparent focus:outline-[#3B82F6] focus:outline-2 focus:ring-0 focus:ring-offset-0 border-0 py-0 leading-[3rem]"
+    style={{
+      outline: 'none',
+      boxShadow: 'none',
+      border: 'none',
+      outlineOffset: '-2px'
+    }}
+    onFocus={(e) => {
+      e.target.style.outline = '2px solid #3B82F6';
+      e.target.style.boxShadow = 'none';
+    }}
+    onBlur={(e) => {
+      e.target.style.outline = 'none';
+      e.target.style.boxShadow = 'none';
+    }}
+    disabled={isLoading}
+  />
         <AnimatePresence>
           {isLoading && (
             <motion.div
