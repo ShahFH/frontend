@@ -99,7 +99,7 @@ export const VerificationSection: React.FC<VerificationSectionProps> = ({
             <div key={index}>
               <Input
                 ref={(el) => (inputRefs.current[index] = el)}
-                type="number"
+                type="text"
                 maxLength={1}
                 value={digit}
                 onChange={(e) => handleVerificationInput(index, e.target.value)}
