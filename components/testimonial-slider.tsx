@@ -42,7 +42,7 @@ export const TestimonialSlider: React.FC<TestimonialSliderProps> = ({
           >
             {/* User Info */}
             <div className="flex items-center gap-3 mb-3">
-              <div className="w-10 h-10 bg-orange-200 rounded-[12px] flex items-center justify-center">
+              <div className="w-10 h-10 bg-orange-200 rounded-full flex items-center justify-center">
                 <span className="text-sm font-semibold text-orange-800">{currentTestimonial.initials}</span>
               </div>
               <div>
@@ -54,7 +54,7 @@ export const TestimonialSlider: React.FC<TestimonialSliderProps> = ({
             </div>
 
             {/* Stars and Date */}
-            <div className="flex items-center gap-2 mb-3">
+            <div className="flex items-center justify-between gap-2 mb-3">
               <div className="flex gap-1">
                 {[...Array(currentTestimonial.rating)].map((_, i) => (
                   <Star key={i} className="w-4 h-4 fill-green-500 text-green-500" />
