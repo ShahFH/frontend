@@ -104,7 +104,22 @@ export const VerificationSection: React.FC<VerificationSectionProps> = ({
                 value={digit}
                 onChange={(e) => handleVerificationInput(index, e.target.value)}
                 onKeyDown={(e) => handleKeyDown(index, e)}
-                className="w-12 h-12 text-center text-lg font-semibold border-2 border-gray-200 rounded-[12px] focus:rounded-[8px] focus:border-blue-500 focus:ring-0"
+                className="w-12 h-12 text-center text-lg font-semibold border-2 border-[#4B556326] rounded-[12px] focus:rounded-[8px] focus:border-blue-500 focus:ring-0"
+                style={{
+                      outline: 'none',
+                      boxShadow: 'none',
+                      border: '2px solid #4B556326',
+                      outlineOffset: '-2px'
+                    }}
+                    onFocus={(e) => {
+                      e.target.style.outline = '2px solid #3B82F6';
+                      e.target.style.boxShadow = 'none';
+
+                    }}
+                    onBlur={(e) => {
+                      e.target.style.outline = 'none';
+                      e.target.style.boxShadow = 'none';
+                    }}
               />
             </div>
           ))}
